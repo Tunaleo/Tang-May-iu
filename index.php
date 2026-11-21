@@ -1,0 +1,603 @@
+<?php
+$messages = [
+    ['icon' => '☁️', 'title' => 'Những ngày chưa ổn', 'text' => 'Mây à, em không cần phải lúc nào cũng mạnh mẽ. Có những ngày chỉ cần cố gắng đi qua thôi cũng đã là giỏi lắm rồi.'],
+    ['icon' => '🌷', 'title' => 'Nhớ điều này nhé', 'text' => 'Em xứng đáng được yêu thương, được lắng nghe và được nghỉ ngơi. Giá trị của em không nằm ở việc hôm nay em làm được bao nhiêu.'],
+    ['icon' => '⭐', 'title' => 'Ngày mai sẽ đến', 'text' => 'Mọi chuyện rồi sẽ dịu lại, từng chút một. Anh tin vào em, và anh sẽ luôn ở đây để cùng em đi qua những ngày chông chênh.'],
+];
+?>
+<!doctype html>
+<html lang="vi">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#fff4f8">
+    <title>Gửi Mây, một chút dịu dàng ☁️</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+    :root {
+        --pink: #f58ab2;
+        --deep: #d95f91;
+        --ink: #694958;
+        --cream: #fffafc;
+        --line: #f4dce6
+    }
+
+    * {
+        box-sizing: border-box
+    }
+
+    html {
+        scroll-behavior: smooth
+    }
+
+    body {
+        margin: 0;
+        background: var(--cream);
+        color: var(--ink);
+        font-family: "Be Vietnam Pro", "Segoe UI", Arial, sans-serif;
+        overflow-x: hidden
+    }
+
+    body:before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        opacity: .28;
+        background-image: radial-gradient(#f3b8ce 1px, transparent 1px);
+        background-size: 24px 24px;
+        z-index: -1
+    }
+
+    .nav {
+        height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1120px;
+        margin: auto;
+        padding: 0 24px
+    }
+
+    .brand {
+        font-weight: 800;
+        color: var(--deep);
+        letter-spacing: .04em
+    }
+
+    .brand span {
+        font-size: 1.25rem;
+        margin-right: 7px
+    }
+
+    .nav a {
+        color: var(--ink);
+        text-decoration: none;
+        font-size: .92rem;
+        margin-left: 25px
+    }
+
+    .nav a:hover {
+        color: var(--deep)
+    }
+
+    .hero {
+        min-height: 690px;
+        display: grid;
+        place-items: center;
+        text-align: center;
+        padding: 60px 22px 100px;
+        position: relative;
+        overflow: hidden;
+        background: radial-gradient(ellipse at 50% 18%, #ffe4ee 0, transparent 52%)
+    }
+
+    .eyebrow {
+        display: inline-block;
+        border: 1px solid #f4c7d8;
+        background: #fff9fc;
+        border-radius: 99px;
+        padding: 9px 16px;
+        font-size: .83rem;
+        color: var(--deep);
+        letter-spacing: .05em
+    }
+
+    h1 {
+        font-family: "Be Vietnam Pro", "Segoe UI", Arial, sans-serif;
+        font-size: clamp(3rem, 8vw, 6.3rem);
+        line-height: 1.04;
+        font-weight: 500;
+        margin: 25px 0 18px;
+        color: #754d60
+    }
+
+    h1 em {
+        color: var(--deep);
+        font-weight: 500
+    }
+
+    .hero p {
+        font-size: 1.12rem;
+        line-height: 1.8;
+        max-width: 600px;
+        margin: 0 auto;
+        color: #896b79
+    }
+
+    .cta {
+        display: inline-flex;
+        gap: 9px;
+        align-items: center;
+        margin-top: 28px;
+        background: var(--deep);
+        color: #fff;
+        text-decoration: none;
+        border-radius: 99px;
+        padding: 14px 23px;
+        box-shadow: 0 9px 24px #df7fa34a;
+        transition: .25s
+    }
+
+    .cta:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 13px 28px #df7fa366
+    }
+
+    .kitty {
+        width: 120px;
+        height: 98px;
+        margin: 0 auto 25px;
+        position: relative;
+        animation: bob 3s ease-in-out infinite
+    }
+
+    .head {
+        position: absolute;
+        width: 86px;
+        height: 69px;
+        left: 17px;
+        bottom: 0;
+        background: #fff;
+        border: 2px solid #e7cdd7;
+        border-radius: 47% 47% 44% 44%;
+        box-shadow: 0 7px 18px #d890aa30
+    }
+
+    .ear {
+        position: absolute;
+        top: -6px;
+        width: 27px;
+        height: 27px;
+        background: #fff;
+        border: 2px solid #e7cdd7;
+        transform: rotate(45deg);
+        border-radius: 5px;
+        z-index: -1
+    }
+
+    .ear.l {
+        left: 21px
+    }
+
+    .ear.r {
+        right: 21px
+    }
+
+    .eye {
+        position: absolute;
+        top: 31px;
+        width: 5px;
+        height: 8px;
+        border-radius: 50%;
+        background: #68525d
+    }
+
+    .eye.l {
+        left: 22px
+    }
+
+    .eye.r {
+        right: 22px
+    }
+
+    .nose {
+        position: absolute;
+        top: 42px;
+        left: 39px;
+        width: 7px;
+        height: 5px;
+        border-radius: 50%;
+        background: #f4b94f
+    }
+
+    .whisk {
+        position: absolute;
+        top: 39px;
+        width: 17px;
+        height: 1px;
+        background: #a8909b
+    }
+
+    .whisk.l {
+        left: 3px;
+        transform: rotate(10deg);
+        box-shadow: 0 8px #a8909b
+    }
+
+    .whisk.r {
+        right: 3px;
+        transform: rotate(-10deg);
+        box-shadow: 0 8px #a8909b
+    }
+
+    .bow {
+        position: absolute;
+        right: 25px;
+        top: 17px;
+        width: 30px;
+        height: 21px;
+        z-index: 3;
+        transform: rotate(-8deg)
+    }
+
+    .bow:before,
+    .bow:after {
+        content: "";
+        position: absolute;
+        top: 2px;
+        width: 17px;
+        height: 16px;
+        background: #f278a7;
+        border: 1px solid #d95f91
+    }
+
+    .bow:before {
+        left: 0;
+        transform: rotate(22deg);
+        border-radius: 85% 35% 70% 35%
+    }
+
+    .bow:after {
+        right: 0;
+        transform: rotate(-22deg);
+        border-radius: 35% 85% 35% 70%
+    }
+
+    .bow i {
+        position: absolute;
+        z-index: 2;
+        left: 11px;
+        top: 7px;
+        width: 9px;
+        height: 9px;
+        border: 1px solid #d95f91;
+        border-radius: 50%;
+        background: #d95f91
+    }
+
+    .float {
+        position: absolute;
+        color: #ee9bb9;
+        opacity: .65;
+        animation: drift 8s ease-in-out infinite;
+        font-size: 24px
+    }
+
+    .f1 {
+        top: 22%;
+        left: 12%
+    }
+
+    .f2 {
+        top: 34%;
+        right: 13%;
+        animation-delay: -3s;
+        font-size: 18px
+    }
+
+    .f3 {
+        bottom: 19%;
+        left: 20%;
+        animation-delay: -5s;
+        font-size: 17px
+    }
+
+    .f4 {
+        bottom: 22%;
+        right: 18%;
+        animation-delay: -2s
+    }
+
+    section {
+        padding: 80px 22px
+    }
+
+    .section-head {
+        text-align: center;
+        margin: 0 auto 42px;
+        max-width: 650px
+    }
+
+    .section-head .small {
+        font-size: .82rem;
+        color: var(--deep);
+        letter-spacing: .16em;
+        text-transform: uppercase
+    }
+
+    .section-head h2 {
+        font: 500 clamp(2rem, 5vw, 3.2rem) "Be Vietnam Pro", "Segoe UI", Arial, sans-serif;
+        margin: 12px 0;
+        color: #754d60
+    }
+
+    .section-head p {
+        line-height: 1.7;
+        color: #947888
+    }
+
+    .cards {
+        max-width: 1040px;
+        margin: auto;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px
+    }
+
+    .card {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        padding: 27px 25px;
+        box-shadow: 0 12px 35px #c87f9a12;
+        transition: transform .3s, box-shadow .3s
+    }
+
+    .card:hover {
+        transform: translateY(-7px);
+        box-shadow: 0 18px 40px #c87f9a26
+    }
+
+    .card .icon {
+        font-size: 1.8rem
+    }
+
+    .card h3 {
+        font: 600 1.22rem "Be Vietnam Pro", "Segoe UI", Arial, sans-serif;
+        color: #82566a;
+        margin: 17px 0 10px
+    }
+
+    .card p {
+        line-height: 1.8;
+        color: #8b7480;
+        margin: 0;
+        font-size: .96rem
+    }
+
+    .letter-wrap {
+        background: linear-gradient(135deg, #fff0f6, #fff9fb);
+        padding: 76px 22px
+    }
+
+    .letter {
+        max-width: 760px;
+        margin: auto;
+        background: #fff;
+        border: 1px solid #f3d8e3;
+        border-radius: 28px;
+        padding: clamp(28px, 6vw, 58px);
+        text-align: center;
+        box-shadow: 0 22px 60px #c87f9a1a;
+        position: relative
+    }
+
+    .letter:before {
+        content: "♡";
+        position: absolute;
+        top: 17px;
+        right: 24px;
+        font-size: 25px;
+        color: #e9a7bf
+    }
+
+    .letter h2 {
+        font: 500 clamp(2rem, 5vw, 3rem) "Be Vietnam Pro", "Segoe UI", Arial, sans-serif;
+        color: #754d60;
+        margin: 0 0 20px
+    }
+
+    .letter p {
+        font: 1.08rem/2 "Be Vietnam Pro", "Segoe UI", Arial, sans-serif;
+        color: #826977
+    }
+
+    .sign {
+        margin-top: 25px;
+        color: var(--deep);
+        font-style: italic
+    }
+
+    .promise {
+        max-width: 920px;
+        margin: auto;
+        padding: 80px 22px;
+        text-align: center
+    }
+
+    .promise blockquote {
+        font: italic clamp(1.4rem, 4vw, 2.3rem)/1.55 "Be Vietnam Pro", "Segoe UI", Arial, sans-serif;
+        color: #875a70;
+        margin: 16px auto 22px;
+        max-width: 760px
+    }
+
+    .promise .hearts {
+        color: #e987a9;
+        letter-spacing: .35em
+    }
+
+    footer {
+        text-align: center;
+        padding: 28px 20px 36px;
+        color: #a28b96;
+        font-size: .85rem
+    }
+
+    footer span {
+        color: #df769e
+    }
+
+    .top {
+        position: fixed;
+        bottom: 22px;
+        right: 22px;
+        border: 0;
+        background: #fff;
+        color: var(--deep);
+        border-radius: 50%;
+        width: 44px;
+        height: 44px;
+        box-shadow: 0 4px 18px #a35e791f;
+        cursor: pointer;
+        font-size: 18px;
+        opacity: 0;
+        pointer-events: none;
+        transition: .2s
+    }
+
+    .top.show {
+        opacity: 1;
+        pointer-events: auto
+    }
+
+    @keyframes bob {
+        50% {
+            transform: translateY(-7px)
+        }
+    }
+
+    @keyframes drift {
+        50% {
+            transform: translate(10px, -15px) rotate(10deg)
+        }
+    }
+
+    @media(max-width:720px) {
+        .nav {
+            height: 62px
+        }
+
+        .nav a {
+            margin-left: 12px;
+            font-size: .82rem
+        }
+
+        .nav .optional {
+            display: none
+        }
+
+        .hero {
+            min-height: 620px
+        }
+
+        .cards {
+            grid-template-columns: 1fr
+        }
+
+        .card {
+            padding: 23px
+        }
+
+        .float.f1 {
+            left: 5%
+        }
+
+        .float.f2 {
+            right: 5%
+        }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+
+        *,
+        *:before,
+        *:after {
+            scroll-behavior: auto !important;
+            animation-duration: .01ms !important;
+            transition-duration: .01ms !important
+        }
+    }
+    </style>
+</head>
+
+<body>
+    <nav class="nav">
+        <div class="brand"><span>🎀</span>một góc nhỏ của Mây</div>
+        <div><a href="#loi-nhan">Lời nhắn</a><a class="optional" href="#thu-gui-em">Thư gửi em</a></div>
+    </nav>
+    <main>
+        <header class="hero">
+            <span class="float f1">♡</span><span class="float f2">✧</span><span class="float f3">♡</span><span
+                class="float f4">✿</span>
+            <div>
+                <div class="kitty" aria-label="Mèo trắng đeo nơ hồng" role="img">
+                    <div class="head"><i class="ear l"></i><i class="ear r"></i><i class="eye l"></i><i
+                            class="eye r"></i><i class="nose"></i><i class="whisk l"></i><i class="whisk r"></i></div>
+                    <div class="bow"><i></i></div>
+                </div>
+                <div class="eyebrow">GỬI ĐẾN CÔ GÁI NHỎ CỦA ANH ☁️</div>
+                <h1>Chào Mây,<br><em>ôm em một cái nhé.</em></h1>
+                <p>Anh biết có thể hôm nay hơi khó khăn. Vậy nên anh làm một góc nhỏ này, để em nhớ rằng em luôn được
+                    yêu thương và chẳng bao giờ phải một mình.</p>
+                <a class="cta" href="#loi-nhan">Mình đọc một chút nhé <span>↓</span></a>
+            </div>
+        </header>
+        <section id="loi-nhan">
+            <div class="section-head">
+                <div class="small">những điều anh muốn em nhớ</div>
+                <h2>Gửi Mây vài lời dịu dàng</h2>
+                <p>Em cứ đọc chậm thôi. Hôm nay cần nghe câu nào, mình giữ lại câu đó nhé.</p>
+            </div>
+            <div class="cards"><?php foreach ($messages as $message): ?><article class="card">
+                    <div class="icon"><?= htmlspecialchars($message['icon'], ENT_QUOTES, 'UTF-8') ?></div>
+                    <h3><?= htmlspecialchars($message['title'], ENT_QUOTES, 'UTF-8') ?></h3>
+                    <p><?= htmlspecialchars($message['text'], ENT_QUOTES, 'UTF-8') ?></p>
+                </article><?php endforeach; ?></div>
+        </section>
+        <section class="letter-wrap" id="thu-gui-em">
+            <div class="letter">
+                <h2>Mây thương của anh,</h2>
+                <p>Anh mong em sẽ luôn dịu dàng với chính mình như cách em vẫn dịu dàng với mọi người. Nếu mệt thì mình
+                    nghỉ một chút, nếu buồn thì cứ buồn, nếu cần một bờ vai thì anh luôn ở đây.</p>
+                <p>Cảm ơn em vì đã là em — đáng yêu, ấm áp và đặc biệt theo cách chẳng ai có thể thay thế. Anh chúc em
+                    những ngày bình yên, nhiều nụ cười, và luôn gặp được những điều tử tế.</p>
+                <p>Không cần phải vội trở nên ổn đâu. Anh sẽ nắm tay em, từng chút một.</p>
+                <div class="sign">Thương em thật nhiều, anh ♡</div>
+            </div>
+        </section>
+        <section class="promise">
+            <div class="hearts">♡　♡　♡</div>
+            <blockquote>“Dù hôm nay bầu trời có mưa nhiều cỡ nào, anh vẫn tin nắng sẽ tìm được đường đến với em.”
+            </blockquote>
+            <div style="color:#a28b96">Mây cứ là Mây thôi, thế là đủ đáng yêu rồi.</div>
+        </section>
+    </main>
+    <footer>Làm bằng thật nhiều thương mến <span>♥</span> dành riêng cho Mây</footer>
+    <button class="top" aria-label="Lên đầu trang" title="Lên đầu trang">↑</button>
+    <script>
+    const topButton = document.querySelector('.top');
+    window.addEventListener('scroll', () => topButton.classList.toggle('show', window.scrollY > 450));
+    topButton.addEventListener('click', () => window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    }));
+    </script>
+</body>
+
+</html>
